@@ -17,13 +17,13 @@ function getURL(url, callback) {
 }
 
 async.series({
-  requestOne: function(callback){
+  requestOne: function(callback) {
     getURL(urlOne, callback);
   },
-  requestTwo: function(callback){
+  requestTwo: function(callback) {
     getURL(urlTwo, callback);
   }
-}, function(error, results){
+}, function(error, results) {
     if (error) {
       return console.error(error);
     }
