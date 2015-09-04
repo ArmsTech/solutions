@@ -21,6 +21,9 @@ async.whilst(
       });
     },
     function (error) {
+      if (error) {
+        return console.error(error);
+      }
       console.log(count);
     }
 );
