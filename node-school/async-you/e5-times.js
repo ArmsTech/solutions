@@ -1,7 +1,6 @@
 var async = require('async');
 var concatStream = require('concat-stream');
 var http = require('http');
-var querystring = require('querystring');
 
 var hostname = process.argv[2];
 var port = Number(process.argv[3]);
