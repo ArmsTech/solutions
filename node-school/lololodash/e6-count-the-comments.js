@@ -8,7 +8,8 @@ var worker = function(comments) {
           username: username,
           comment_count: _.size(group)};
       })
-      .sortBy('comment_count').reverse();
+      .sortBy('comment_count')
+      .reverse();
 };
 
 module.exports = worker;
