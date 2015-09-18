@@ -7,8 +7,8 @@ Your task is to find ∡MBC ( angle θ°, as shown in figure ) in degrees.
 
 import math
 
-a = int(raw_input())
-b = c = math.hypot(a, int(raw_input())) / 2  # Isosceles triangle
+b = int(raw_input())
+a = c = math.hypot(b, int(raw_input())) / 2  # Isosceles triangle
 
 cos = ((a ** 2) + (b ** 2) - (c ** 2)) / (2 * a * b)
 print '%d%s' % (round(math.degrees(math.acos(cos))), '°')
