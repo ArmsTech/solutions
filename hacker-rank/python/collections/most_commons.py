@@ -7,12 +7,16 @@ Your task is to find top three most common characters in the string S.
 """
 
 from collections import Counter
-from operator import itemgetter
+
+
+def custom_sort(x, y):
+    """Sort by descending {x,y}[1] with secondary ascending {x,y}[0]"""
+    if x[1] == y[1]:
+        return 1 if x[0] > y[0] else -1
+    return cmp(y[1], x[1])
+
 
 characters = Counter(list(raw_input()))
 
-# qwertyuiopasdfghjklzxcvbnm
-# sorted_by_count = sorted(characters.items(), key=itemgetter(1), reverse=True)
-# sorted_by_character = sorted(sorted_by_count, key=itemgetter(0))
-for item in characters.most_common(3):
+for item in sorted(characters.most_common(3), cmp=custom_sort):
     print ' '.join(map(str, item))
