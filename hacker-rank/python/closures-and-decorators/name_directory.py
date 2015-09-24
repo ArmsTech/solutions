@@ -8,27 +8,26 @@ done in the order of their input.
 """
 
 import functools
+from operator import itemgetter
 
 
 def with_honorifics(func):
     @functools.wraps(func)
-    def wrapper(names_and_genders):
-        def add_honorific(name, gender):
+    def wrapper(people):
+        def add_honorific(person):
+            first_name, last_name, gender = person
             honorific = 'Mr.' if gender == 'M' else 'Ms.'
-            return ' '.join(honorific, name)
-        return map(add_honorific, names_and_genders)
+            return ' '.join([honorific, first_name, last_name])
+        return map(
+            add_honorific,
+            [itemgetter(0, 1, 3)(person) for person in func(people)])
     return wrapper
 
 
+@with_honorifics
 def get_names(people):
-    return [person[:2] for person in people]
+    return sorted(people, key=itemgetter(2))
 
-data = """Mike Thomson 20 M
-Robert Bustle 32 M
-Andria Bustle 30 F"""
 
-people = []
-for person in data.split('\n'):
-    people.append(person.split())
-
-print people
+people = [raw_input().split() for _ in range(int(raw_input()))]
+print '\r\n'.join(get_names(people))
