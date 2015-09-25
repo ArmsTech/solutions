@@ -26,15 +26,18 @@ for _ in range(int(raw_input())):
             passes_test = left_most <= last_stacked
             break
 
-        first_to_stack = max(left_most, right_most)
-        second_to_stack = min(left_most, right_most)
+        next_to_stack = max(left_most, right_most)
+        last_stacked = last_stacked or next_to_stack
 
-        passes_test = second_to_stack <= first_to_stack <= (
-            last_stacked or first_to_stack)
+        if next_to_stack <= last_stacked:
+            passes_test = True
+        else:
+            next_to_stack = min(left_most, right_most)
+            passes_test = next_to_stack <= last_stacked
 
         if not passes_test:
             break
 
-        last_stacked = second_to_stack
+        last_stacked = next_to_stack
 
     print 'Yes' if passes_test else 'No'
