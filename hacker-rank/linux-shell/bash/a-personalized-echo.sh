@@ -2,5 +2,5 @@
 #
 # A Personalized Echo
 
-read NAME
-echo "Welcome ${NAME}"
+read name
+echo "Welcome ${name}"

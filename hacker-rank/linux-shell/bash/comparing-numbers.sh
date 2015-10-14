@@ -5,10 +5,10 @@
 read x
 read y
 
-if (("${x}" < "${y}")); then
+if (( "${x}" < "${y}" )); then
   echo "X is less than Y"
-elif (("${x}" > "${y}")); then
+elif (( "${x}" > "${y}" )); then
   echo "X is greater than Y"
-elif (("${x}" == "${y}")); then
+elif (( "${x}" == "${y}" )); then
   echo "X is equal to Y"
 fi

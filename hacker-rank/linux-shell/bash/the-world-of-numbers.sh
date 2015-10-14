@@ -2,10 +2,10 @@
 #
 # The World Of Numbers Challenge
 
-read X
-read Y
+read x
+read y
 
-echo $((X+Y))
-echo $((X-Y))
-echo $((X*Y))
-echo $((X/Y))
+echo "$(( ${x} + ${y} ))"
+echo "$(( ${x} - ${y} ))"
+echo "$(( ${x} * ${y} ))"
+echo "$(( ${x} / ${y} ))"
