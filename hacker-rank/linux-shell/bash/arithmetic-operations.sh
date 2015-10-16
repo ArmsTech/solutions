@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Arithmetic Operations
+# Arithmetic Operations Challenge
 
 read expression
 
