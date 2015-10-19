@@ -6,5 +6,5 @@
 # into an array and then display the entire array, with a space between each
 # of the countries' names.
 
-countries=$(cat)
+countries=($(cat))
 echo ${countries[@]}
