@@ -9,6 +9,7 @@ class IntegerResource(object):
 
     def on_post(self, req, resp):
         """Handle any integer."""
+        integer = req.get_param_as_int('integer', required=True)
         resp.status = falcon.HTTP_201
 
 
