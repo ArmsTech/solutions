@@ -5,9 +5,7 @@ import time
 import falcon
 
 from median.persistence import redis_store, INTEGERS_SET_KEY
-
-# Seconds
-EPOCH_MINUTE = 60
+from median.tasks import get_median_for_last_min 
 
 
 class IntegerResource(object):
@@ -32,11 +30,7 @@ class MedianResource(object):
 
     def on_get(self, req, resp):
         """Handle requests for the median in the last minute."""
-        epoch_time = time.time()
-        integers = redis_store.zrangebyscore(
-            'integers', epoch_time - EPOCH_MINUTE, epoch_time)
-
-        resp.body = str(integers)
+        get_median_for_last_min.delay(time.time())
         resp.status = falcon.HTTP_200
 
 
