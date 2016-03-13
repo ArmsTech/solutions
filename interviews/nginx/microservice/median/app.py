@@ -1,6 +1,7 @@
 """A Median Microservice API."""
 
 import time
+import uuid
 
 import falcon
 
@@ -16,8 +17,12 @@ class IntegerResource(object):
         """Handle any integer."""
         integer = req.get_param_as_int('integer', required=True)
 
+        # Set elements must be unique
+        id_ = uuid.uuid4()
+        element_name = ':'.join(map(str, (id_, integer)))
+
         elements_added = redis_store.zadd(
-            INTEGERS_SET_KEY, time.time(), integer)
+            INTEGERS_SET_KEY, time.time(), element_name)
         added_successfully = elements_added == 1
 
         resp.status = (
