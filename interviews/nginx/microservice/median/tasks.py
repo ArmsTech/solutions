@@ -5,7 +5,7 @@ import time
 import celery
 import numpy
 
-from median.persistence import redis_store
+from median.persistence import redis_app
 
 # Seconds
 EPOCH_MINUTE = 60
@@ -24,7 +24,7 @@ def get_median_for_last_min(from_time):
         int: The median for the last minute.
     """
     epoch_time = time.time()
-    elements = redis_store.zrangebyscore(
+    elements = redis_app.zrangebyscore(
         'integers', epoch_time - EPOCH_MINUTE, epoch_time)
     # elements e.g. ['7d529dd4-548b-4258-aa8e-23e34dc8d43d:200', ...]
     integers = [int(element.split(':')[1]) for element in elements]

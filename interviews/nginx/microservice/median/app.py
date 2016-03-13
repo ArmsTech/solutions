@@ -5,7 +5,7 @@ import uuid
 
 import falcon
 
-from median.persistence import redis_store, INTEGERS_SET_KEY
+from median.persistence import redis_app, INTEGERS_SET_KEY
 from median.tasks import get_median_for_last_min 
 
 
@@ -21,7 +21,7 @@ class IntegerResource(object):
         id_ = uuid.uuid4()
         element_name = ':'.join(map(str, (id_, integer)))
 
-        elements_added = redis_store.zadd(
+        elements_added = redis_app.zadd(
             INTEGERS_SET_KEY, time.time(), element_name)
         added_successfully = elements_added == 1
 
