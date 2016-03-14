@@ -1,8 +1,9 @@
 # Frequency
 
-### Usage Example
+Print the top ten most frequently logged IP addresses from a standard NGINX
+access.log file.
 
-Print top ten most frequently logged IP addresses.
+### Usage Example
 
 ```console
 brenj$ ./frequency -h
