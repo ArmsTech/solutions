@@ -3,6 +3,13 @@
 Print the top ten most frequently logged IP addresses from a standard NGINX
 access.log file.
 
+### Assumptions
+
+This commandline script assumes that the specified access-logfile uses the 
+NGINX default (specifically leading with the IP address). To support all access 
+logfile formats and/or validate IP addresses we could use a compiled regular 
+expression.
+
 ### Usage Example
 
 ```console
