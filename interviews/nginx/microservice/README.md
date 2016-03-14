@@ -2,6 +2,12 @@
 
 Design and implement a Median Microservice.
 
+### Assumptions
+
+This problem is open-ended so there are too many assumptions to list, however 
+the primary assumption made is that historical (older than a minute) integer 
+data is not relevant for this API and thus can be disregarded.
+
 ### Requirements
 
 * Linux or other Unix-like OS
@@ -10,6 +16,10 @@ Design and implement a Median Microservice.
 * RabbitMQ server
 * Pip
 * Virtualenv
+
+### Configuration
+
+All app configuration is accomplished by environmental variables. See .env.
 
 ### Install (e.g. Ubuntu)
 
