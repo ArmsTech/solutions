@@ -7,7 +7,7 @@ import uuid
 
 import falcon
 
-from median.persistence import redis_app, INTEGERS_SET_KEY
+from median.persistence import redis_app
 from median.tasks import celery_app, get_median_for_last_min 
 
 
@@ -24,7 +24,7 @@ class IntegerResource(object):
         element_name = ':'.join(map(str, (id_, integer)))
 
         elements_added = redis_app.zadd(
-            INTEGERS_SET_KEY, time.time(), element_name)
+            os.environ['MEDIAN_SET_KEY'], time.time(), element_name)
         added_successfully = elements_added == 1
 
         resp.status = (
