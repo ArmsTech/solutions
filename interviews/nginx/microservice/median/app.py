@@ -1,12 +1,14 @@
 """A Median Microservice API."""
 
+import json
+import os
 import time
 import uuid
 
 import falcon
 
 from median.persistence import redis_app, INTEGERS_SET_KEY
-from median.tasks import get_median_for_last_min 
+from median.tasks import celery_app, get_median_for_last_min 
 
 
 class IntegerResource(object):
@@ -35,7 +37,24 @@ class MedianResource(object):
 
     def on_get(self, req, resp):
         """Handle requests for the median in the last minute."""
-        get_median_for_last_min.delay(time.time())
+        task = get_median_for_last_min.delay(time.time())
+
+        result_url = os.path.join(
+            os.environ['MEDIAN_API_URL'], 'result', task.id)
+        resp.body = json.dumps({'result_url': result_url})
+        resp.status = falcon.HTTP_200
+
+
+class ResultResource(object):
+
+    """Resource for retrieving a median result."""
+
+    def on_get(self, req, resp, task_id):
+        """Handle requests for a median result."""
+        task = celery_app.AsyncResult(task_id)
+
+        resp.body = json.dumps(
+            {'status': task.status, 'result': str(task.result)})
         resp.status = falcon.HTTP_200
 
 
@@ -43,3 +62,4 @@ app = falcon.API()
 
 app.add_route('/put', IntegerResource())
 app.add_route('/median', MedianResource())
+app.add_route('/result/{task_id}', ResultResource())
