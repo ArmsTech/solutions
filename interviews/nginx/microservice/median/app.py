@@ -8,11 +8,10 @@ import uuid
 import falcon
 
 from median.persistence import redis_app
-from median.tasks import celery_app, get_median_for_last_min 
+from median.tasks import celery_app, get_median_for_last_min
 
 
 class IntegerResource(object):
-
     """Resource for managing the integers used to calculate a median."""
 
     def on_post(self, req, resp):
@@ -32,7 +31,6 @@ class IntegerResource(object):
 
 
 class MedianResource(object):
-
     """Resource for managing the calculation of a median."""
 
     def on_get(self, req, resp):
@@ -46,7 +44,6 @@ class MedianResource(object):
 
 
 class ResultResource(object):
-
     """Resource for retrieving a median result."""
 
     def on_get(self, req, resp, task_id):

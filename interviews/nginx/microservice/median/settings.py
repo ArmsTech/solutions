@@ -1,3 +1,5 @@
+"""Settings for celery, redis, etc."""
+
 from datetime import timedelta
 
 from kombu import Exchange, Queue
