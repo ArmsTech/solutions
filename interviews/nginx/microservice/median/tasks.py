@@ -11,6 +11,7 @@ celery_app = celery.Celery()
 celery_app.config_from_object('median.settings')
 
 MEDIAN_LAST_X_SECONDS = 1 * 60
+REMOVE_LAST_X_SECONDS = 2 * 60
 
 
 @celery_app.task(bind=True)
@@ -31,3 +32,12 @@ def get_median_for_last_min(task, from_time):
 
     # Don't give numpy an empty list
     return numpy.median(integers or 0)
+
+
+@celery_app.task()
+def remove_old_integers():
+    """Remove integers that will not be included in median calculation."""
+    epoch_time = time.time()
+    removed = redis_app.zremrangebyscore(
+        'integers', '-inf', epoch_time - REMOVE_LAST_X_SECONDS)
+    print "{0} old elements removed from integers set.".format(removed)
