@@ -1,6 +1,6 @@
 # Median Microservice
 
-### Example
+### Usage Example
 
 ```console
 brenj$ http --form POST http://127.0.0.1:8000/put integer=2
@@ -32,7 +32,9 @@ Server: gunicorn/19.4.5
 content-length: 65
 content-type: application/json; charset=utf-8
 
-http://127.0.0.1:8000/result/b303f13d-d716-4224-86c7-478b14d0ca77
+{
+    "result_url": "http://127.0.0.1:8000/result/b303f13d-d716-4224-86c7-478b14d0ca77" 
+}
 
 brenj$ http GET http://127.0.0.1:8000/result/b303f13d-d716-4224-86c7-478b14d0ca77
 HTTP/1.1 200 OK
