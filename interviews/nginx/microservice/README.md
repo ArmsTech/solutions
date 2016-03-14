@@ -2,19 +2,21 @@
 
 ### Requirements
 
-  * Linux or other Unix-like OS
-  * Python development libraries
-  * Redis server
-  * RabbitMQ server
-  * Pip
-  * Virtualenv
+* Linux or other Unix-like OS
+* Python development libraries
+* Redis server
+* RabbitMQ server
+* Pip
+* Virtualenv
 
 ### Install (e.g. Ubuntu)
 
-  * `sudo apt-get install python-dev redis-server rabbitmq-server python-pip && sudo pip install virtualenv`
-  * `virtualenv venv && . venv/bin/activate`
-  * `make install`
-  * `make microservice`
+```console
+sudo apt-get install python-dev redis-server rabbitmq-server python-pip && sudo pip install virtualenv
+virtualenv venv && . venv/bin/activate
+make install
+make microservice
+```
 
 ### Usage Example
 
