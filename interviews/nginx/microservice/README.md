@@ -30,6 +30,12 @@ make install
 make microservice
 ```
 
+### Testing
+
+```console
+make test
+```
+
 ### Usage Example
 
 ```console
