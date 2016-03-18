@@ -21,7 +21,7 @@ def main(path_to_logfile):
     with open(path_to_logfile, 'r') as file_:
         for line in file_:
             ip_addr = line.split(None, 1)[0]
-            counter[ip_addr] = counter.get(ip_addr, 0) + 1
+            counter[ip_addr] += 1
 
     print '\n'.join(
         ['{1} {0}'.format(ip, count) for ip, count in counter.most_common(10)])
